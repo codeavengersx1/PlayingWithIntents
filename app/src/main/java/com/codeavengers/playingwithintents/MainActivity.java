@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity
 {
     private Button btnStartActivity;
@@ -23,6 +26,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+        * Attach ButterKnife to this Activity
+        * */
+        ButterKnife.bind(this);
 
         /*
         * Recipe to create an Activity
@@ -79,28 +87,34 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    @OnClick(R.id.img_whatsapp_logo)
+    void onWhatsAppLogoClick()
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        /*
+        * Implicit Intent code to start WhatsApp
+        * */
+        /*Intent whatsIntent = new Intent(Intent.ACTION_SEND);
+        // whatsIntent.setPackage("com.whatsapp");
+        whatsIntent.setType("text/plain");
+        startActivity(whatsIntent);*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
+        String[] recipients = {"contact@itechvalley.in", "jeff@amazon.com"};
 
-        return super.onOptionsItemSelected(item);
+        /*
+        * Code to Start Gmail (Send Feedback)
+        * */
+        Intent gmailIntent = new Intent(Intent.ACTION_SEND);
+        // gmailIntent.setPackage("com.google.android.gm");
+        gmailIntent.setType("text/plain");
+        /* Body */
+        gmailIntent.putExtra(Intent.EXTRA_TEXT, "This is a Email Body. \n\nRegards,\nGaurav Lonkar\nFounder,\nUADA");
+        /* Subject */
+        gmailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback of PlayingWithIntent App");
+        /* Recipient */
+        gmailIntent.putExtra(Intent.EXTRA_EMAIL, recipients);
+        startActivity(gmailIntent);
+
+        // TODO: For all other Implicit Intent Code, ask Google!
     }
 }

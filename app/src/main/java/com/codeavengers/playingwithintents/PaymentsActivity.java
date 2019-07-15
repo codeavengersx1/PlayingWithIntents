@@ -44,6 +44,14 @@ public class PaymentsActivity extends AppCompatActivity
         * Attach ButterKnife to this Activity
         * */
         ButterKnife.bind(this);
+
+        /*
+        * Receive Payment from other Apps
+        * */
+        Intent extraDataFromOtherApp = getIntent();
+        String extraStringData = extraDataFromOtherApp.getStringExtra(Intent.EXTRA_TEXT);
+
+        etxFullName.setText(extraStringData);
     }
 
     @OnClick(R.id.btn_pay_activity_payments)

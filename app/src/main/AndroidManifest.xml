@@ -14,7 +14,7 @@
         
         <activity
             android:name=".ThankYouActivity"
-            android:label="Thank you for Payment"/>
+            android:label="Thank you for Payment" />
         
         <activity
             android:name=".MainActivity"
@@ -22,16 +22,23 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-    
+                
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
         <activity
             android:name=".PaymentsActivity"
-            android:screenOrientation="portrait"
+            android:label="Paise De!!!"
             android:noHistory="true"
-            android:label="Paise De!!!"/>
+            android:screenOrientation="portrait">
+            <!-- Receive Data from Other Apps -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
